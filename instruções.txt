@@ -8,16 +8,32 @@ Run Server:             python manage.py runserver
 
 
 =======================Criação de um APP============================
-    OS apps criados devem ser adicionados na lista de INSTALLED_APPS dentro de settings.py da pastal principal
+    * OS apps criados devem ser adicionados na lista de INSTALLED_APPS dentro de settings.py da pastal principal
 
 =======================Criação de uma Model============================
-    Tambem deve se fazer o make migration:
+    * Tambem deve se fazer o make migration:
         python manage.py makemigrations app_name
         python manage.py migrate
 
-    Adicionar dentro do admin do APP:
-        admin.site.register(Function_name/Nome dos Model)
+    * Adicionar dentro do admin do APP:
+        admin.site.register(Class_name/Nome dos Model)
     
+=======================Criação do template============================
+    * ADD o path do template e dos arquivos staticos no settings
+        STATICFILES_DIRS = [
+            BASE_DIR / "static",
+        ]
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+    * Necessita de uma view conectada ao template e direcionando alertando na URL
+
+
+
+=======================Criação do View============================
+
+
+
 
 =======================APPS para o Django============================
-Formatação de textos:       Django-ckeditor
+    * Deve se adicionar o app no INSTALLED_APPS
+
+    * Formatação de textos:       Django-ckeditor
