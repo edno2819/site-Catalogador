@@ -1,0 +1,23 @@
+                        python -m venv venv
+                        pip install django
+                        django-admin startproject catalogador
+gerar banco de dados:   python manage.py migrate / python manage.py makemigrations app_name
+Criar Aplicação:        python manage.py startapp <nome>
+Criação de adm:         python manage.py creat superuser
+Run Server:             python manage.py runserver
+
+
+=======================Criação de um APP============================
+    OS apps criados devem ser adicionados na lista de INSTALLED_APPS dentro de settings.py da pastal principal
+
+=======================Criação de uma Model============================
+    Tambem deve se fazer o make migration:
+        python manage.py makemigrations app_name
+        python manage.py migrate
+
+    Adicionar dentro do admin do APP:
+        admin.site.register(Function_name/Nome dos Model)
+    
+
+=======================APPS para o Django============================
+Formatação de textos:       Django-ckeditor

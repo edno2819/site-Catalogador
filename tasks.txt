@@ -1,0 +1,11 @@
+
+
+
+
+criar sistema de extração de dados
+criar banco de dados  
+
+Agendamento de extração: 
+    https://pt.stackoverflow.com/questions/204190/agendamento-de-tarefas-no-django
+    https://fernandofreitasalves.com/tarefas-assincronas-com-django-e-celery/
+    Celery
