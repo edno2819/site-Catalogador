@@ -37,3 +37,13 @@ Run Server:             python manage.py runserver
     * Deve se adicionar o app no INSTALLED_APPS
 
     * Formatação de textos:       Django-ckeditor
+
+
+=======================Query Django============================
+    Entry.objects.all().filter(pub_date__year=2006) 
+
+    q = Entry.objects.filter(headline__startswith="What")
+    q = q.filter(pub_date__lte=datetime.date.today())
+    q = q.exclude(body_text__icontains="food")
+
+    Entry.objects.get(pk=1)

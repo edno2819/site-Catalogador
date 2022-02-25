@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'buscas',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -111,3 +112,8 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+#cron jobs
+CRONJOBS = [
+    ('*/5 * * * *', 'buscas.cron.my_scheduled_job', ['teste 1: '], {'verbose': 1})
+]
