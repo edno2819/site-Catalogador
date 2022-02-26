@@ -113,7 +113,16 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#cron jobs
+#cron jobs :https://gutsytechster.wordpress.com/2019/06/24/how-to-setup-a-cron-job-in-django/
+# Minuto (0 - 59)
+# Hora (0 - 23)
+# Dia do mês (1 – 31)
+# Mês (1 - 12)
+# Dia da semana (0 - 6)
 CRONJOBS = [
-    ('*/5 * * * *', 'buscas.cron.my_scheduled_job', ['teste 1: '], {'verbose': 1})
+    ('* 12 * * *', 'buscas.cron.extractOne_1_minute')
+    ('* 0 * * *', 'buscas.cron.extractTwo_1_minute', ['teste 1: '], {'verbose': 1})
+    ('4 0 * * *', 'buscas.cron.extract_5_minute', ['teste 1: '], {'verbose': 1})
+    ('6 0 * * *', 'buscas.cron.extract_15_minute', ['teste 1: '], {'verbose': 1})
+
 ]
