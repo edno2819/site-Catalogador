@@ -100,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -120,10 +120,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Mês (1 - 12)
 # Dia da semana (0 - 6)
 CRONJOBS = [
-    ('*/1 * * * *', 'buscas.cron.extractOne_1_minute'),
-    ('* 0 * * *', 'buscas.cron.extractTwo_1_minute', ['teste 1: '], {'verbose': 1}),
-    ('4 0 * * *', 'buscas.cron.extract_5_minute', ['teste 1: '], {'verbose': 1}),
-    ('6 0 * * *', 'buscas.cron.extract_15_minute', ['teste 1: '], {'verbose': 1}),
+    # ('*/3 * * * *', 'buscas.cron.Agend.extractOne_1_minute'),
+    # ('35 16 * * *', 'buscas.cron.Agend.extractTwo_1_minute'),
+    # ('4 0 * * *', 'buscas.cron.Agend.extract_5_minute'),
+    ('6 0 * * *', 'buscas.cron.teste'),
 
 ]
 

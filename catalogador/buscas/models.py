@@ -1,14 +1,6 @@
-from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
+from django.db import models
 
-
-
-class Post(models.Model):
-    title = models.CharField(max_length=200)
-    resumo = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.title
 
 
 class Paridade(models.Model):
@@ -30,3 +22,5 @@ class Configuraçõe(models.Model):
 
     def __str__(self):
         return f'Dias Salvos no banco: {self.dias_salvos}'
+
+#a=5
