@@ -1,6 +1,6 @@
 import psycopg2
 
-class MysqlClass:
+class DataBaseClass:
     def __init__(self, host, user, password, database):
         self.host = host
         self.user = user
@@ -10,14 +10,14 @@ class MysqlClass:
         self.limite = 15000
     
     def conect(self):
-        self.mydb  =  psycopg2.connector.connect(
+        self.mydb  =  psycopg2.connect(
             host = self.host,
             user = self.user,
             password = self.password,
             database = self.database
             )
 
-        self.cur = self.mydb.cursor(buffered=True)
+        self.cur = self.mydb.cursor()
 
     def create_database(self, name):
       self.cur.execute(f"CREATE DATABASE IF NOT EXISTS{name}")
@@ -56,6 +56,10 @@ class MysqlClass:
             func()
         except:
             self.reconnect()
+    
+    def reverErro(self):
+        self.cur.execute("ROLLBACK")
+
 
     def close(self):
       self.mydb.close()

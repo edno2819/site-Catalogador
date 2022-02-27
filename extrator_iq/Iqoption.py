@@ -1,7 +1,6 @@
 from iqoptionapi.stable_api import IQ_Option
 from datetime import datetime
 from dateutil import tz
-from banco import MysqlClass
 import time
 
 
@@ -34,6 +33,17 @@ class IqOption:
         '''PRACTICE / REAL'''
         self.type = type
         self.API.change_balance(type)
+
+        
+    def bet_binaria(self, par:str, amount:float, action:str, time_frame:int, func=''):
+        status, id = self.API.buy(amount, par, action, time_frame)
+        func(status, action) if func!='' else ...
+
+        if status:
+            status2,lucro=self.API.check_win_v4(id)
+            if status2:
+                return round(lucro, 2)
+        else: return False
         
 
     def get_velas(self, par, step:int, time_frame:int):
@@ -48,47 +58,3 @@ class IqOption:
 
     def close(self):
         self.API.api.close()
-
-class Extrator:
-    TIMES = [1, 5, 15]
-    VELAS = {1:1440, 5:288, 15:96}
-
-    def __init__(self, login, senha) -> None:
-        host = 'ec2-35-168-80-116.compute-1.amazonaws.com'
-        user = 'jfzbjbghuninan'
-        database = 'd7gm26lueueuo6'
-        password = 'ecadefe331e7876b479ceb4acdb00c95010f37259d36794ea7b3c7d5b0782c0e'
-        self.banco = MysqlClass(host, user, password, database)
-    
-        self.iq = IqOption()
-        self.iq.conect(login, senha)
-
-    def setBanco(self, asset):
-        query = f'''CREATE TABLE IF NOT EXISTS {asset} (
-                                                        Date varchar(32),
-                                                        time_vela int(2)
-                                                        direcao varchar(32)
-                                                        hora int(2)
-                                                        minuto int(2)
-                                                        )'''
-        self.banco.execute(query)
-        self.banco.commit()
-
-
-
-
-    def checkConect(self):
-        pass
-    
-    def GetVelas(self, par, time):
-        values = self.iq.get_velas(par, 1000, time)
-        return values
-
-
-if __name__ == '__main__':
-    iq = Extrator('edno28@hotmail.com', '99730755ed')
-    par = 'EURUSD'
-    time = 1
-    a = iq.GetVelas()
-    print(a)
-

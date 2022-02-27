@@ -1,5 +1,5 @@
 from django.views.generic.edit import CreateView
-from iqoptionapi.stable_api import IQ_Option
+#from iqoptionapi.stable_api import IQ_Option
 from django.shortcuts import render
 from datetime import datetime
 from dateutil import tz

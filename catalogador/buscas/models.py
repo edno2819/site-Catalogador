@@ -20,6 +20,8 @@ class Paridade(models.Model):
         return self.name
 
 class Configuraçõe(models.Model):
+    login = models.CharField(max_length=32, null=False, blank=False)
+    senha = models.CharField(max_length=32, null=False, blank=False)
     dias_salvos = models.PositiveIntegerField(default=10, null=False, blank=False,
             validators=[
                 MaxValueValidator(50),
