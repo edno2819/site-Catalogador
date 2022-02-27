@@ -1,6 +1,6 @@
 
-from banco import DataBaseClass
-from Iqoption import IqOption
+from buscas.extrator_iq.banco import DataBaseClass
+from buscas.extrator_iq.Iqoption import IqOption
 from datetime import datetime, timedelta
 
 class Extrator:
@@ -16,6 +16,11 @@ class Extrator:
     
         self.iq = IqOption()
         self.iq.conect(login, senha)
+        
+    
+    def teste(self):
+        self.iq.change_balance()
+        self.iq.bet_binaria('EURUSD-OTC', 1, 'CALL', 1)
 
 
     def setVariables(self):
@@ -109,8 +114,8 @@ class Extrator:
         tipos = {'1 2':self.getVelasOneMinute2, '1 1':self.getVelasOneMinute1, '5':self.getVelasFiveMinute, '15':self.getVelas15Minute}
         datas = tipos[tipo](par, time)
         datas = self.formattingToDatabase(datas, time)
-        self.setBanco(par)
-        self.insetRows(datas, par)
+        if datas!=[]:
+            self.insetRows(datas, par)
 
 
 

@@ -119,13 +119,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Dia do mês (1 – 31)
 # Mês (1 - 12)
 # Dia da semana (0 - 6)
+CRON_LOG = '>> /home/edno/Desktop/Catalogador/site-Catalogador/catalogador/logs/cron_log.log'
 CRONJOBS = [
     # ('*/3 * * * *', 'buscas.cron.Agend.extractOne_1_minute'),
     # ('35 16 * * *', 'buscas.cron.Agend.extractTwo_1_minute'),
     # ('4 0 * * *', 'buscas.cron.Agend.extract_5_minute'),
-    ('6 0 * * *', 'buscas.cron.teste'),
+    ('36 19 * * *', 'buscas.cron.cron_1_1', CRON_LOG),
 
 ]
-
+#redireciona os erros para stdoutc
+CRONTAB_COMMAND_SUFFIX = '2>&1'
 # python3 manage.py crontab add
 # python3 manage.py crontab show
