@@ -34,11 +34,11 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+Site feito em Django para catalogar as paridades da IQ Option e obter sinais probabilisticos
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+Para conseguir usar a API da IQ dentro do Django é necessário botar a pasta da lib IQ dentro da venv criado para o projeto
 
 ### Prerequisites
 
@@ -96,16 +96,14 @@ Add additional notes about how to deploy this on a live system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [Postgres](https://www.mongodb.com/) - Database
+- [Django](https://expressjs.com/) - Server Framework
+- [Botstrap](https://vuejs.org/) - Web Framework
+- [Python](https://nodejs.org/en/) - Server Environment
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+- [@Edno Almeida](https://github.com/kylelobo) - Idea & Initial work
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
