@@ -1,53 +1,64 @@
-from buscas.models import Paridade, Configuraçõe
+from buscas.models import Paridade, Configuraçõe, Chance
 from buscas.extrator_iq.extract import Extrator
+from datetime import datetime
 import logging
 
 log = logging.getLogger(__name__)
 
+def init():
+    config = Configuraçõe.objects.filter()[0]
+    ex = Extrator(config.login, config.senha)
+    return ex
 
-class CronExtract:
-    def __inti__(self):
-        self.log = logging.getLogger(__name__)
-        self.log.debug("Cron started")
-        self.config = Configuraçõe.objects.filter()[0]
-        self.ex = Extrator(self.config.login, self.config.senha)
 
-    def teste(self):
-        self.ex.teste()
-
-    def extractOne_1_minute(self):
+def sumDirections():
+    tipos = ['1', '5', '15']
+    ex = init()
+    print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} - Tipo {tipo}')
+    for tipo in tipos:
         for par in Paridade.objects.filter():
-            self.ex.setBanco(par.name)
-            self.ex.pipeline('1 1', par.name)
+            Chance
+    print('Atualização de chances concluida com sucesso!')
 
-    def extractTwo_1_minute(self):
-        print(f'2 {Paridade.objects.all()}')
+def teste():
+    print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} ')
+    ex = init()
+    ex.teste()
 
-    def extract_5_minute(self):
-        print(f'3 {Paridade.objects.all()}')
+def extract_1_1():
+    ex = init()
+    tipo = '1 1'
+    print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} - Tipo {tipo}')
+    for par in Paridade.objects.filter():
+        ex.setBanco(par.name)
+        ex.pipeline(tipo, par.name)
+    del ex
 
-    def extract_15_minute(self):
-        print(f'4 {Paridade.objects.all()}')
-    
-    def exclude_one_day_all(self):...
+def extract_1_2():
+    ex = init()
+    tipo = '1 2'
+    print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} - Tipo {tipo}')
+    for par in Paridade.objects.filter():
+        ex.setBanco(par.name)
+        ex.pipeline(tipo, par.name)
+    del ex
 
+def extract_5():
+    ex = init()
+    tipo = '5'
+    print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} - Tipo {tipo}')
+    for par in Paridade.objects.filter():
+        ex.setBanco(par.name)
+        ex.pipeline(tipo, par.name)
+    del ex
 
-Agend = CronExtract()
-
-def cron_1_1():
-    Agend.extractOne_1_minute()
-
-def cron_1_2():
-    Agend.extractTwo_1_minute()
-
-def cron_5():
-    Agend.extract_5_minute()
-
-def cron_15():
-    Agend.extract_15_minute()
-
-def cron_delete():
-    Agend.exclude_one_day_all()
-
+def extract_15():
+    ex = init()
+    tipo = '15'
+    print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} - Tipo {tipo}')
+    for par in Paridade.objects.filter():
+        ex.setBanco(par.name)
+        ex.pipeline(tipo, par.name)
+    del ex
 
 

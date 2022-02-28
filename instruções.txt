@@ -27,16 +27,47 @@ Run Server:             python manage.py runserver
     * Necessita de uma view conectada ao template e direcionando alertando na URL
 
 
-
 =======================Criação do View============================
+    HttpResponse - Renderiza uma string passada
 
-
+    Render - Renderiza um html
+        return render(request, name.html, {'Dicionario':'de variaveis})
 
 
 =======================APPS para o Django============================
     * Deve se adicionar o app no INSTALLED_APPS
 
     * Formatação de textos:       Django-ckeditor
+
+=======================Template============================
+#Documentação https://jinja.palletsprojects.com/en/3.0.x/
+
+
+    {{nome da variável passada pela view}}
+
+    {% if sexo == 'm' %}
+        Olar senhor {{nome}}
+    {% if sexo == 'f' %}
+        Ola senhora {{nome}}
+    {% endif %}
+
+    {% for pessoa in lista%}
+        Olar senhor {{pessoa.nome}}
+    {% endfor %}
+
+#HERANÇA
+    name.html - Botar
+    {% block main %}
+    {% endblock %}
+
+    - HERDAR
+        {% extends 'name.html' %}
+
+        {% block main %}
+            html
+        {% endblock %}
+
+
 
 
 =======================Query Django============================

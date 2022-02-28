@@ -23,4 +23,14 @@ class Configuraçõe(models.Model):
     def __str__(self):
         return f'Dias Salvos no banco: {self.dias_salvos}'
 
-#a=5
+class Chance(models.Model):
+    par = models.CharField(max_length=32, null=False, blank=False)
+    timeframe = models.PositiveSmallIntegerField(null=False, blank=False)
+    hora = models.PositiveSmallIntegerField(null=False, blank=False)
+    minuto = models.PositiveSmallIntegerField(null=False, blank=False)
+    call = models.PositiveSmallIntegerField(null=False, blank=False)
+    sell = models.PositiveSmallIntegerField(null=False, blank=False)
+
+    def __str__(self):
+        return f'{self.par}-{self.timeframe}-{self.hora}-{self.minuto}'
+

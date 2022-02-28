@@ -20,7 +20,7 @@ class Extrator:
     
     def teste(self):
         self.iq.change_balance()
-        self.iq.bet_binaria('EURUSD-OTC', 1, 'CALL', 1)
+        self.iq.bet_binaria('EURUSD', 1, 'CALL', 1)
 
 
     def setVariables(self):
@@ -113,9 +113,11 @@ class Extrator:
         time = int(tipo.split(' ')[0])
         tipos = {'1 2':self.getVelasOneMinute2, '1 1':self.getVelasOneMinute1, '5':self.getVelasFiveMinute, '15':self.getVelas15Minute}
         datas = tipos[tipo](par, time)
+        print(f'     Get data {par}')
         datas = self.formattingToDatabase(datas, time)
         if datas!=[]:
             self.insetRows(datas, par)
+        print(f'     Save data {par}')
 
 
 
