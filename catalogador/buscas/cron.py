@@ -17,7 +17,10 @@ def sumDirections():
     print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} - Tipo {tipo}')
     for tipo in tipos:
         for par in Paridade.objects.filter():
-            Chance
+            Chance.query('''
+            SELECT direcao from {par} 
+            WHERE time_vela={tipo}''')
+
     print('Atualização de chances concluida com sucesso!')
 
 def teste():

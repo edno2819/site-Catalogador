@@ -1,11 +1,112 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block main %}
-<div id="layoutSidenav_content">
+<div id="layoutSidenav_content" class="search">
     <main>
-        <div class="container-fluid px-4">
-            <h1 class="mt-4">{{test}}</h1>
-            <ol class="breadcrumb mb-4">
-            </ol>
+        <br>
+        <div class="container-fluid px-4 text-center">
+            <h1 class="display-3  text-light">Catalogação</h1>
+            <br>
+
+            <div class='div-result rounded border border-dark'>
+                <br>
+                <div class="btn-group mr-2 testcard" role="group" aria-label="First group" >
+                {% for chance in chances %}
+                        {% if chance.direc == "CALL" %}
+                            <button type="button" class="btn btn-danger btn-sm testcard">
+                                {{chance.par}}&#11015;<br>
+                                {{chance.hora}}:{{chance.minuto}}
+                                <br>
+                                {{chance.porcent}}%                        
+                            </button>
+                        {% else %}
+                            <button type="button" class="btn btn-success btn-sm testcard">
+                                {{chance.par}}&#11014;<br>
+                                {{chance.hora}}:{{chance.minuto}}
+                                <br>
+                                {{chance.porcent}}%                        
+                            </button>
+                        {% endif %}
+                {% endfor %}
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="First group" >
+                    {% for chance in chances %}
+                            {% if chance.direc == "CALL" %}
+                                <button type="button" class="btn btn-danger btn-sm testcard" style='border: 1px solid #000000;'>
+                                    {{chance.par}}&#11015;<br>
+                                    {{chance.hora}}:{{chance.minuto}}
+                                    <br>
+                                    {{chance.porcent}}%                        
+                                </button>
+                            {% else %}
+                                <button type="button" class="btn btn-success btn-sm testcard" style='border: 1px solid #000000;'>
+                                    {{chance.par}}&#11014;<br>
+                                    {{chance.hora}}:{{chance.minuto}}
+                                    <br>
+                                    {{chance.porcent}}%                        
+                                </button>
+                            {% endif %}
+                    {% endfor %}
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="First group" >
+                        {% for chance in chances %}
+                                {% if chance.direc == "CALL" %}
+                                    <button type="button" class="btn btn-danger btn-sm testcard" style='border: 1px solid #000000;'>
+                                        {{chance.par}}&#11015;<br>
+                                        {{chance.hora}}:{{chance.minuto}}
+                                        <br>
+                                        {{chance.porcent}}%                        
+                                    </button>
+                                {% else %}
+                                    <button type="button" class="btn btn-success btn-sm testcard" style='border: 1px solid #000000;'>
+                                        {{chance.par}}&#11014;<br>
+                                        {{chance.hora}}:{{chance.minuto}}
+                                        <br>
+                                        {{chance.porcent}}%                        
+                                    </button>
+                                {% endif %}
+                        {% endfor %}
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="First group" >
+                            {% for chance in chances %}
+                                    {% if chance.direc == "CALL" %}
+                                        <button type="button" class="btn btn-danger btn-sm testcard" style='border: 1px solid #000000;'>
+                                            {{chance.par}}&#11015;<br>
+                                            {{chance.hora}}:{{chance.minuto}}
+                                            <br>
+                                            {{chance.porcent}}%                        
+                                        </button>
+                                    {% else %}
+                                        <button type="button" class="btn btn-success btn-sm testcard" style='border: 1px solid #000000;'>
+                                            {{chance.par}}&#11014;<br>
+                                            {{chance.hora}}:{{chance.minuto}}
+                                            <br>
+                                            {{chance.porcent}}%                        
+                                        </button>
+                                    {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="First group" >
+                            {% for chance in chances %}
+                                    {% if chance.direc == "CALL" %}
+                                        <button type="button" class="btn btn-danger btn-sm testcard" style='border: 1px solid #000000;'>
+                                            {{chance.par}}&#11015;<br>
+                                            {{chance.hora}}:{{chance.minuto}}
+                                            <br>
+                                            {{chance.porcent}}%                        
+                                        </button>
+                                    {% else %}
+                                        <button type="button" class="btn btn-success btn-sm testcard" style='border: 1px solid #000000;'>
+                                            {{chance.par}}&#11014;<br>
+                                            {{chance.hora}}:{{chance.minuto}}
+                                            <br>
+                                            {{chance.porcent}}%                        
+                                        </button>
+                                    {% endif %}
+                            {% endfor %}
+                        </div>
+                </div>
         </div>
     </main>
 </div>

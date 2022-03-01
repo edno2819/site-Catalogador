@@ -1,0 +1,36 @@
+
+
+
+@font-face { 
+    font-family: YOUR FONT NAME; 
+    src: url(http://sitename.com/wp-content/themes/themename/fonts/font-name.ttf); 
+    font-weight: normal; 
+}
+
+
+
+div.search {
+    background-image: url("/static/assets/img/back3.jpg");
+    /* background-color: rgb(15, 24, 80); */
+
+}
+
+.div-result{
+    background-color: rgb(52, 58, 64);
+}
+
+h1.search{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-shadow: 2px 2px 4px #000000;
+    font-family:Helvetica;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.testcard{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #000000;
+}

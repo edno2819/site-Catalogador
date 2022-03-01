@@ -1,7 +1,5 @@
 import os
 import sys
-#import logging
-from datetime import datetime
 
 
 def main():
@@ -19,13 +17,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # logging.basicConfig(
-    #     level=logging.INFO,
-    #     format='%(asctime)s %(name)s %(levelname)s %(message)s',
-    #     filename=f'./logs/log_{datetime.now().strftime("%Y-%m-%d %H-%M-%S")}.log',
-    #     filemode='w'
-    #     )
-
-    # log = logging.getLogger(__name__)
-    
     main()

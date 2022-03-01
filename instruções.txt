@@ -67,6 +67,10 @@ Run Server:             python manage.py runserver
             html
         {% endblock %}
 
+=======================Forms============================
+1- Manualmente - https://www.youtube.com/watch?v=rzyoT2ZDy1c
+2- Forms
+3- Model Forms
 
 
 

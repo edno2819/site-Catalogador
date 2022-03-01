@@ -9,9 +9,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <link rel="icon" href="{% static 'assets/img/ico_wite.ico' %}">
         <title>Catalogador ROX</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/search.css' %}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
 
@@ -20,13 +22,10 @@
 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark py-4">
             <img src="{% static 'assets/img/ico_wite.ico' %}" width="30" height="30" alt="" style="margin-left:15px">
-            <a class="navbar-brand ps-3" >Catalogador ROX</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" data-toggle="collapse" data-target="#navbarToggleExternalContent"><i class="fas fa-bars"></i></button>
+            <h4 class="ps-3 font-weight-bold text-light" >Catalogador ROX</h4>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
             <!-- Navbar-->
@@ -50,41 +49,54 @@
                             <li><hr class="dropdown-divider" /></li>
                             <pre><h4> Filtros   <i class="fas fa-tachometer-alt"></i></h4></pre>
 
-                            <div class="input-group mb-3" style="width:80%; margin-left:5%">
-                                <select class="form-select" id="inputGroupSelect01">
-                                  <option selected>Time</option>
-                                  <option value="1">1</option>
-                                  <option value="2">5</option>
-                                  <option value="3">15</option>
+                            <form action="{% url 'busca' %}" method="post">
+                              {% csrf_token %}
+
+                              <div class="input-group mb-3" style="width:80%; margin-left:5%">
+                                <select class="form-select" id="par" name="par">
+                                  <option selected disabled>Par</option>
+                                  {% for par in pares %}
+                                  <option value={{par.name}}>{{par.name}}</option>
+                                  {% endfor %}
+
                                 </select>
                               </div>
-                            <div class="input-group mb-3" style="width:80%; margin-left:5%">
-                                <select class="form-select" id="inputGroupSelect01">
-                                  <option selected>Dias</option>
-                                  <option value="1">1</option>
-                                  <option value="2">5</option>
-                                  <option value="3">15</option>
-                                </select>
+
+                              <div class="input-group mb-3" style="width:80%; margin-left:5%">
+                                  <select class="form-select" id="time" name="time">
+                                    <option selected disabled>Time</option>
+                                    <option value=1>1</option>
+                                    <option value=5>5</option>
+                                    <option value=15>15</option>
+                                  </select>
+                                </div>
+
+                              <div class="input-group mb-3" style="width:80%; margin-left:5%">
+                                  <select class="form-select" id="dias" name="dias">
+                                    <option selected disabled>Dias</option>
+                                    <option value="1">10</option>
+                                    <option value="2">15</option>
+                                  </select>
                               </div>
-                            <div class="input-group mb-3" style="width:80%; margin-left:5%">
-                                <select class="form-select" id="inputGroupSelect01">
-                                  <option selected>Martingale</option>
-                                  <option value="1">1</option>
-                                  <option value="2">5</option>
-                                  <option value="3">15</option>
-                                </select>
+
+                              <div class="input-group mb-3" style="width:80%; margin-left:5%">
+                                  <select class="form-select" id="gale" name="gale">
+                                    <option selected disabled>Martingale</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+
+                                  </select>
                               </div>
-                            <div class="input-group mb-3" style="width:80%; margin-left:5%">
-                                <select class="form-select" id="inputGroupSelect01">
-                                  <option selected>Time</option>
-                                  <option value="1">1</option>
-                                  <option value="2">5</option>
-                                  <option value="3">15</option>
-                                </select>
-                              </div>
-                              <div class="align-middle" style="margin-left:5%">
-                                <button class="btn btn-primary" type="button"><a class="dropdown-item" href="/resultado"><h5>Pesquisar</h5></a></button>
-                              </div>
+
+                                <div class="align-middle" style="margin-left:5%">
+                                  <input type="submit" value='Buscar'>
+                                </div>
+
+                            </form>
+
                             <li><hr class="dropdown-divider" /></li>
                         </div>
                     </div>
