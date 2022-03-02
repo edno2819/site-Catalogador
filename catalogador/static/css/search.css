@@ -1,22 +1,24 @@
 
 
-
-@font-face { 
-    font-family: YOUR FONT NAME; 
-    src: url(http://sitename.com/wp-content/themes/themename/fonts/font-name.ttf); 
-    font-weight: normal; 
-}
-
-
-
 div.search {
-    background-image: url("/static/assets/img/back3.jpg");
-    /* background-color: rgb(15, 24, 80); */
+    background-image: url("/static/assets/img/back.png");
+    /* background-color: rgb(52, 58, 64); */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
 }
 
 .div-result{
-    background-color: rgb(52, 58, 64);
+    width: 70vw;
+    background-color: rgba(26, 28, 31, 0.952);
+    border-radius: 12px;
+    overflow-y: scroll;
+
+
 }
 
 h1.search{
@@ -25,7 +27,7 @@ h1.search{
     text-shadow: 2px 2px 4px #000000;
     font-family:Helvetica;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 80px;
 }
 
 .testcard{
@@ -34,3 +36,45 @@ h1.search{
     font-weight: bold;
     border: 1px solid #000000;
 }
+
+.botoao{
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+}
+.call{
+    background-color: #319c35;
+    border: 1px solid #319c35;
+
+}
+.sell{
+    background-color: #a71c1c;
+    border: 1px solid #a71c1c;
+
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
