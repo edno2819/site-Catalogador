@@ -1,3 +1,6 @@
+ pip install git+https://github.com/tangentlabs/django-oscar-paypal.git@issue/34/oscar-0.6
+ 
+ 
                         python -m venv venv
                         pip install django
                         django-admin startproject catalogador

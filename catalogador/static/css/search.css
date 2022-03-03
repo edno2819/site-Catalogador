@@ -1,8 +1,8 @@
 
 
 div.search {
-    background-image: url("/static/assets/img/back.png");
-    /* background-color: rgb(52, 58, 64); */
+    /* background-image: url("/static/assets/img/back.png"); */
+    background-color: rgb(52, 58, 64); ;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -12,22 +12,30 @@ div.search {
 
 }
 
+div.legend {
+    background-image: url("/static/assets/img/back.png");
+    /* background-color: rgb(18, 34, 87); ; */
+    display: flex;
+    width: 30%;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
 .div-result{
     width: 70vw;
+    height: 70%;
     background-color: rgba(26, 28, 31, 0.952);
     border-radius: 12px;
     overflow-y: scroll;
-
-
 }
 
 h1.search{
-    color: rgb(255, 255, 255);
+    color: #ffffff;
     text-align: center;
     text-shadow: 2px 2px 4px #000000;
-    font-family:Helvetica;
-    font-weight: bold;
-    font-size: 80px;
 }
 
 .testcard{
@@ -38,11 +46,13 @@ h1.search{
 }
 
 .botoao{
+    width: 11vw;
     border-radius: 5px;
     color: rgb(255, 255, 255);
     font-weight: bold;
     text-align: center;
     font-size: 12px;
+    margin-top: 2px;
 }
 .call{
     background-color: #319c35;
@@ -54,7 +64,6 @@ h1.search{
     border: 1px solid #a71c1c;
 
 }
-
 
 ::-webkit-scrollbar {
     width: 10px;

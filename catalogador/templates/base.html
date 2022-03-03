@@ -55,6 +55,7 @@
                               <div class="input-group mb-3" style="width:80%; margin-left:5%">
                                 <select class="form-select" id="par" name="par">
                                   <option selected disabled>Par</option>
+                                  <option value='0'>Todos</option>
                                   {% for par in pares %}
                                   <option value={{par.name}}>{{par.name}}</option>
                                   {% endfor %}
@@ -65,29 +66,20 @@
                               <div class="input-group mb-3" style="width:80%; margin-left:5%">
                                   <select class="form-select" id="time" name="time">
                                     <option selected disabled>Time</option>
-                                    <option value=1>1</option>
-                                    <option value=5>5</option>
-                                    <option value=15>15</option>
+                                    <option value='0'>Todos</option>
+                                    <option value=1>1 Min</option>
+                                    <option value=5>5 Min</option>
+                                    <option value=15>15 Min</option>
                                   </select>
                                 </div>
 
                               <div class="input-group mb-3" style="width:80%; margin-left:5%">
-                                  <select class="form-select" id="dias" name="dias">
-                                    <option selected disabled>Dias</option>
-                                    <option value="1">10</option>
-                                    <option value="2">15</option>
-                                  </select>
-                              </div>
-
-                              <div class="input-group mb-3" style="width:80%; margin-left:5%">
                                   <select class="form-select" id="gale" name="gale">
                                     <option selected disabled>Martingale</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-
+                                    <option value='0'>Todos</option>
+                                    <option value="1">1 Martingale</option>
+                                    <option value="2">2 Martingale</option>
+                                    <option value="3">3 Martingale</option>
                                   </select>
                               </div>
 

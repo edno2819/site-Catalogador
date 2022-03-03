@@ -5,7 +5,7 @@
     <main>
         <br>
         <div class="container-fluid px-4 text-center">
-            <h1 class="display-3 text-light">Catalogação</h1>
+            <h1 class="display-3 search">Catalogação</h1>
             <br>
 
             <div class='div-result'>
@@ -15,74 +15,13 @@
                 {% for chance in chances %}
                         {% if chance.direc == "CALL" %}
                             <button type="button" class="botoao call">
-                                {{chance.par}}<br>
-                                {{chance.hora}}:{{chance.minuto}}
-                                <br>
-                                {{chance.porcent}}%                        
+                                {{chance.par}} - {{chance.timeframe}} Min<br>
+                                {{chance.porcent}}% - {{chance.hora}}:{{chance.minuto}}
                             </button>
                         {% else %}
                             <button type="button" class="botoao sell">
-                                {{chance.par}}<br>
-                                {{chance.hora}}:{{chance.minuto}}
-                                <br>
-                                {{chance.porcent}}%                        
-                            </button>
-                        {% endif %}
-                {% endfor %}
-                </div>
-                <div class="mr-2" role="group" aria-label="First group" >
-                    {% for chance in chances %}
-                            {% if chance.direc == "CALL" %}
-                                <button type="button" class="botoao call">
-                                    {{chance.par}}<br>
-                                    {{chance.hora}}:{{chance.minuto}}
-                                    <br>
-                                    {{chance.porcent}}%                        
-                                </button>
-                            {% else %}
-                                <button type="button" class="botoao sell">
-                                    {{chance.par}}<br>
-                                    {{chance.hora}}:{{chance.minuto}}
-                                    <br>
-                                    {{chance.porcent}}%                        
-                                </button>
-                            {% endif %}
-                    {% endfor %}
-                    </div>
-                    <div class="mr-2" role="group" aria-label="First group" >
-                        {% for chance in chances %}
-                                {% if chance.direc == "CALL" %}
-                                    <button type="button" class="botoao call">
-                                        {{chance.par}}<br>
-                                        {{chance.hora}}:{{chance.minuto}}
-                                        <br>
-                                        {{chance.porcent}}%                        
-                                    </button>
-                                {% else %}
-                                    <button type="button" class="botoao sell">
-                                        {{chance.par}}<br>
-                                        {{chance.hora}}:{{chance.minuto}}
-                                        <br>
-                                        {{chance.porcent}}%                        
-                                    </button>
-                                {% endif %}
-                        {% endfor %}
-                        </div>
-                <div class="mr-2" role="group" aria-label="First group" >
-                {% for chance in chances %}
-                        {% if chance.direc == "CALL" %}
-                            <button type="button" class="botoao call">
-                                {{chance.par}}<br>
-                                {{chance.hora}}:{{chance.minuto}}
-                                <br>
-                                {{chance.porcent}}%                        
-                            </button>
-                        {% else %}
-                            <button type="button" class="botoao sell">
-                                {{chance.par}}<br>
-                                {{chance.hora}}:{{chance.minuto}}
-                                <br>
-                                {{chance.porcent}}%                        
+                                {{chance.par}} - {{chance.timeframe}} Min<br>
+                                {{chance.porcent}}% - {{chance.hora}}:{{chance.minuto}}                     
                             </button>
                         {% endif %}
                 {% endfor %}

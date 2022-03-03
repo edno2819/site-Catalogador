@@ -1,32 +1,42 @@
+from buscas.extrator_iq.extract import ExtratorMysql, AnaltyChances
 from buscas.models import Paridade, Configuraçõe, Chance
-from buscas.extrator_iq.extract import Extrator
 from datetime import datetime
-import logging
-
-log = logging.getLogger(__name__)
 
 def init():
     config = Configuraçõe.objects.filter()[0]
-    ex = Extrator(config.login, config.senha)
+    ex = ExtratorMysql(config.login, config.senha)
     return ex
 
 
 def sumDirections():
-    tipos = ['1', '5', '15']
-    ex = init()
-    print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} - Tipo {tipo}')
-    for tipo in tipos:
-        for par in Paridade.objects.filter():
-            Chance.query('''
-            SELECT direcao from {par} 
-            WHERE time_vela={tipo}''')
+    time_frames = ['1', '5', '15']
+    horas = [n for n in range(0,24)]
+    minutos = [n for n in range(1,60)]
+
+    config = Configuraçõe.objects.filter()[0]
+    ana = AnaltyChances(config.login, config.senha)    
+
+
+    for timeframe in time_frames:
+        print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} - Tipo {timeframe}')
+        for hora in horas:
+            for minuto in minutos:
+                for par in Paridade.objects.filter():
+                    datas = ana.getDatas(par, hora, minuto, timeframe)
+                    direc, call, sell, taxa = ana.formatChance(datas)
+                    instan = Chance(par, timeframe, hora, minuto, call, sell, taxa, direc)
+                    instan.save()
+    '''
+    - Verificar a entradas dos dados
+    - retorna de ana call e sell
+    - Quando tiver apenas 1 tipo botar 0 no outro
+    - Preparar a exclusão de dados
+    - Tratar quando não houver dados suficientes no tempo passado'''
+
+
 
     print('Atualização de chances concluida com sucesso!')
 
-def teste():
-    print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} ')
-    ex = init()
-    ex.teste()
 
 def extract_1_1():
     ex = init()
