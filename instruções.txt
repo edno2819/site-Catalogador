@@ -6,7 +6,7 @@
                         django-admin startproject catalogador
 gerar banco de dados:   python manage.py migrate / python manage.py makemigrations app_name
 Criar Aplicação:        python manage.py startapp <nome>
-Criação de adm:         python manage.py creat superuser
+Criação de adm:         python manage.py createsuperuser
 Run Server:             python manage.py runserver
 
 

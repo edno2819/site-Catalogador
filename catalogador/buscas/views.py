@@ -1,4 +1,3 @@
-from django.views.generic.edit import CreateView
 from buscas.models import Paridade, Chance
 from django.shortcuts import render
 
@@ -23,7 +22,7 @@ def busca(request):
         datas = datas.filter(timeframe=time) if time!=0 else datas
 
 
-        datas = datas.order_by('-porcent').order_by('-par')[0:100]
+        datas = datas.order_by('-porcent','-par')[0:100]
 
         context.update({'test':request.POST.get('time'), 'chances': datas})
         return render(request, 'result.html', context) 

@@ -1,13 +1,13 @@
 
-# from buscas.extrator_iq.banco_myslq import MysqlClass
-# from buscas.extrator_iq.banco import DataBaseClass
-# from buscas.extrator_iq.Iqoption import IqOption
-# from datetime import datetime, timedelta
-
-from banco_myslq import MysqlClass
-from banco import DataBaseClass
-from Iqoption import IqOption
+from buscas.extrator_iq.banco_myslq import MysqlClass
+from buscas.extrator_iq.banco import DataBaseClass
+from buscas.extrator_iq.Iqoption import IqOption
 from datetime import datetime, timedelta
+
+# from banco_myslq import MysqlClass
+# from banco import DataBaseClass
+# from Iqoption import IqOption
+# from datetime import datetime, timedelta
 
 class ExtratorPostGres:
     TIMES = [1, 5, 15]
@@ -101,7 +101,7 @@ class ExtratorPostGres:
         lista = []
         for data in datas:
             date = data[0][:10]
-            direcao = 'CALL' if data[-1]==1 else 'PUT'
+            direcao = 'CALL' if data[-1]==1 else 'SELL'
             hora = int(data[0][11:13])
             minuto = int(data[0][14:16])
             row = (date, time_vela, direcao, hora, minuto)
@@ -130,11 +130,15 @@ class ExtratorPostGres:
 class ExtratorMysql:
     TIMES = [1, 5, 15]
     VELAS = {1:900, 5:300, 15:100}
+    VELAS_ALL = {1:1400*12, 5:300*12, 15:100*12}
+
+
     def __init__(self, login, senha) -> None:
+        #mysql://b948f2d03e644f:5e4beba7@us-cdbr-east-05.cleardb.net/heroku_e178f4c06f07972?reconnect=true
         host = 'us-cdbr-east-05.cleardb.net'
-        user = 'be56268e56adbd'
-        password = '4fcccf30'
-        database = 'heroku_9fb2dc279334c4c'
+        user = 'b948f2d03e644f'
+        password = '5e4beba7'
+        database = 'heroku_e178f4c06f07972'
         self.banco = MysqlClass(host, user, password, database)
 
 
@@ -189,6 +193,11 @@ class ExtratorMysql:
                 datas.append(c)
         return datas
 
+
+    def getVelasMinuteAll(self, par, time):
+        values = self.iq.getManyVelas(par, self.VELAS_ALL[time], time)
+        return values
+
     def getVelasFiveMinute(self, par, time):
         datas = []
         self.setVariables()
@@ -219,7 +228,7 @@ class ExtratorMysql:
         lista = []
         for data in datas:
             date = data[0][:10]
-            direcao = 'CALL' if data[-1]==1 else 'PUT'
+            direcao = 'CALL' if data[-1]==1 else 'SELL'
             hora = int(data[0][11:13])
             minuto = int(data[0][14:16])
             row = (date, time_vela, direcao, hora, minuto)
@@ -236,7 +245,11 @@ class ExtratorMysql:
         7- Insert datas to Database
         '''
         time = int(tipo.split(' ')[0])
-        tipos = {'1 2':self.getVelasOneMinute2, '1 1':self.getVelasOneMinute1, '5':self.getVelasFiveMinute, '15':self.getVelas15Minute}
+        tipos = {
+        '1 2':self.getVelasOneMinute2, '1 1':self.getVelasOneMinute1, '5':self.getVelasFiveMinute, '15':self.getVelas15Minute,
+        '1 all':self.getVelasMinuteAll, '5 all':self.getVelasMinuteAll, '15 all':self.getVelasMinuteAll
+        }
+
         datas = tipos[tipo](par, time)
         print(f'     Get data {par}')
         datas = self.formattingToDatabase(datas, time)
@@ -244,12 +257,13 @@ class ExtratorMysql:
             self.insetRows(datas, par)
         print(f'     Save data {par}')
 
+
 class AnaltyChances:
     def __init__(self) -> None:
         host = 'us-cdbr-east-05.cleardb.net'
-        user = 'be56268e56adbd'
-        password = '4fcccf30'
-        database = 'heroku_9fb2dc279334c4c'
+        user = 'b948f2d03e644f'
+        password = '5e4beba7'
+        database = 'heroku_e178f4c06f07972'
         self.banco = MysqlClass(host, user, password, database)
 
     def getDatas(self, par, hora, minuto, timeframe, limit=10):
@@ -262,25 +276,32 @@ class AnaltyChances:
         return datas
 
     def formatChance(self, datas):
-        if len(datas)==1:
-            'Caso apenas tenha uma ocorrência de direção nos dias pegos'
-            return datas[0][0], datas[0][1], 100
-        else:
-            name_one, value_one = datas[0][0], datas[0][1]
-            name_two, value_two = datas[1][0], datas[1][1]
-            soma = value_one + value_two
+        dic = {datas[0][0]:datas[0][1]}
 
-            if value_one>=value_two:
-                x = int((100*value_one)/soma)
-                return name_one, value_one, x
-            else:
-                x = int((100*value_two)/soma)
-                return name_two, value_two, x
+        if len(datas)==1:
+            dic.update({'SELL':0}) if  datas[0][0] == 'CALL' else dic.update({'CALL':0})  
+        else:
+            dic.update({datas[1][0]:datas[1][1]})
+                
+        direc, maxi = ('CALL', dic['CALL']) if dic['CALL']>dic['SELL']  else ('SELL', dic['SELL'])  
+        taxa = int((100*maxi)/(dic['CALL']+dic['SELL']))
+
+        return direc, dic['CALL'], dic['SELL'], taxa
+
 
 
 if __name__ == '__main__':
     iq = ExtratorMysql('edno28@hotmail.com', '99730755ed')
-    pares = ['EURUSD', 'AUDCAD', 'EURJPY', 'GBPUSD']
+    pares = ['GBPCHF']
     for par in pares:
         iq.setBanco(par)
-        iq.pipeline('1 1', par)
+        iq.pipeline('15 all', par)
+
+    a = AnaltyChances()
+    par = 'GBPCHF'
+    hora=12
+    minuto = 15
+    timeframe = 15
+
+    datas = a.getDatas(par, hora, minuto, timeframe)
+    a.formatChance(datas)
