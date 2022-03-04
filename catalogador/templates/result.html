@@ -7,21 +7,33 @@
         <div class="container-fluid px-4 text-center">
             <h1 class="display-3 search">Catalogação</h1>
             <br>
-
+            <h4 class="result">Resultados: {{resultado_qtd}}</h3>
             <div class='div-result'>
                 <br>
                 
+
                 <div class="mr-2" role="group" aria-label="First group" >
+                <!-- https://pt.stackoverflow.com/questions/149356/visualizar-texto-ao-posicionamento-do-mouse-sobre-palavra-ou-imagem -->
                 {% for chance in chances %}
                         {% if chance.direc == "CALL" %}
-                            <button type="button" class="botoao call">
+                            <button type="button" class="botoao call" id="passar_mouse">
                                 {{chance.par}} - {{chance.timeframe}} Min<br>
-                                {{chance.porcent}}% - {{chance.hora}}:{{chance.minuto}}
+                                {{chance.porcent}}% - {{chance.horario}}
+                                <div id="mostrar">
+                                    VELA ANTERIOR<br>
+                                    {{chance.porcent_before}}% - {{chance.horario_before}}<br>
+                                    {{chance.direc_before}}
+                                </div>
                             </button>
                         {% else %}
-                            <button type="button" class="botoao sell">
+                            <button type="button" class="botoao sell" id="passar_mouse">
                                 {{chance.par}} - {{chance.timeframe}} Min<br>
-                                {{chance.porcent}}% - {{chance.hora}}:{{chance.minuto}}                     
+                                {{chance.porcent}}% - {{chance.horario}}
+                                <div id="mostrar">
+                                    ANTERIOR<br>
+                                    {{chance.porcent_before}}% - {{chance.horario_before}}<br>
+                                    {{chance.direc_before}}
+                                </div>
                             </button>
                         {% endif %}
                 {% endfor %}

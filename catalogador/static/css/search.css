@@ -1,3 +1,31 @@
+[data-tooltip] {
+    position: relative;
+    font-weight: bold;
+  }
+  
+  [data-tooltip]:after {
+    display: none;
+    position: absolute;
+    top: -5px;
+    padding: 5px;
+    border-radius: 3px;
+    left: calc(100% + 2px);
+    content: attr(data-tooltip);
+    white-space: nowrap;
+    background-color: #0095ff;
+    color: White;
+  }
+  
+  [data-tooltip]:hover:after {
+    display: block;
+  }
+  #mostrar{
+    display: none;
+  }
+  
+  #passar_mouse:hover #mostrar{
+    display:block;
+    }
 
 
 div.search {
@@ -36,6 +64,11 @@ h1.search{
     color: #ffffff;
     text-align: center;
     text-shadow: 2px 2px 4px #000000;
+}
+
+.result{
+    text-align: left;
+    color: #ffffff;
 }
 
 .testcard{

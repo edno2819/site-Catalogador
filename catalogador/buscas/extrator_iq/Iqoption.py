@@ -57,6 +57,15 @@ class IqOption:
             result.append(vela_convert)
         return result
     
+    def tryGet(self, par, time_frame, qtd, time_end):
+        for c in range(5):
+            velas = self.API.get_candles(par, time_frame, qtd, time_end)
+            if type(velas)==list:
+                return velas
+        else:
+            print(f'Not get {par}-{time_frame}')
+            return []
+    
     def getManyVelas(self, par, step:int, time_frame:int):
         result = []
         n = step//1000
@@ -64,13 +73,13 @@ class IqOption:
         time_end = time.time()
 
         for c in range(n):
-            velas = self.API.get_candles(par, time_frame*60, 1000, time_end)
+            velas = self.tryGet(par, time_frame*60, 1000, time_end)
             time_end = velas[0]['from']
             velas.reverse()
             result += velas
 
         if r>0:
-            velas = self.API.get_candles(par, time_frame*60, r, time_end)
+            velas = self.tryGet(par, time_frame*60, r, time_end)
             velas.reverse()
             result += velas
 
