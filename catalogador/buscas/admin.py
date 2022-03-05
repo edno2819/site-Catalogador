@@ -28,8 +28,18 @@ class VelasAdmin(admin.ModelAdmin):
         return queryset, may_have_duplicates
 
 
+class ChancesAdmin(admin.ModelAdmin):
+    list_display = ('timeframe', 'par', 'hora', 'minuto', 'direc')
+    search_fields = ['minuto']
+    list_filter = ('par', 'timeframe', 'hora')
+
+    sortable_by = ['direc']
+
+class ConfigsAdmin(admin.ModelAdmin):
+    fields = ('login', 'senha', 'dias_salvos')
+
 
 admin.site.register(Paridade)
-admin.site.register(Configuraçõe)
-admin.site.register(Chance)
+admin.site.register(Configuraçõe, ConfigsAdmin)
+admin.site.register(Chance, ChancesAdmin)
 admin.site.register(Vela, VelasAdmin)

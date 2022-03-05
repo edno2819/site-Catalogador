@@ -17,20 +17,22 @@
                 {% for chance in chances %}
                         {% if chance.direc == "CALL" %}
                             <button type="button" class="botoao call" id="passar_mouse">
-                                {{chance.par}} - {{chance.timeframe}} Min<br>
-                                {{chance.porcent}}% - {{chance.horario}}
+                                {{chance.par}} - {{chance.porcent}}% <br>
+                                {{chance.timeframe}} Min- {{chance.horario}}
                                 <div id="mostrar">
-                                    VELA ANTERIOR<br>
+                                    <hr>
+                                    <a">VELA ANTERIOR</a><br>
                                     {{chance.porcent_before}}% - {{chance.horario_before}}<br>
                                     {{chance.direc_before}}
                                 </div>
                             </button>
                         {% else %}
                             <button type="button" class="botoao sell" id="passar_mouse">
-                                {{chance.par}} - {{chance.timeframe}} Min<br>
-                                {{chance.porcent}}% - {{chance.horario}}
+                                {{chance.par}} - {{chance.porcent}}% <br>
+                                {{chance.timeframe}} Min- {{chance.horario}}
                                 <div id="mostrar">
-                                    ANTERIOR<br>
+                                    <hr>
+                                    <a>VELA ANTERIOR</a><br>
                                     {{chance.porcent_before}}% - {{chance.horario_before}}<br>
                                     {{chance.direc_before}}
                                 </div>

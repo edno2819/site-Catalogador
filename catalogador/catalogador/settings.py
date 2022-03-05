@@ -122,12 +122,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #TAREFAZ EXECUTADAS DE FORMA PARALELAS
 CRON_LOG = '>> /home/edno/Desktop/Catalogador/site-Catalogador/catalogador/logs/cron_log.log'
 CRONJOBS = [
-    # ('* 13 * * 1,2,3,4,5', 'buscas.cron.extract_1_1', CRON_LOG),
-    # ('1 0 * * 2,3,4,5,6', 'buscas.cron.extract_1_2', CRON_LOG),
-    # ('6 0 * * 2,3,4,5,6', 'buscas.cron.extract_5', CRON_LOG),
-    # ('8 0 * * 2,3,4,5,6', 'buscas.cron.extract_15', CRON_LOG),
-    ('4 16 * * 2,3,4,5,6', 'buscas.cron.extractAllDjango', CRON_LOG),
-    ('12 16 * * *', 'buscas.cron.sumDirectionsVelas', CRON_LOG),
+    #('4 16 * * 2,3,4,5,6', 'buscas.cron.deleteVelasBefore', CRON_LOG),
+    # ('* 13 * * 1,2,3,4,5', 'buscas.cron.extract_1_1_Django', CRON_LOG),
+    # ('1 0 * * 2,3,4,5,6', 'buscas.cron.extract_1_2_Django', CRON_LOG),
+    # ('6 0 * * 2,3,4,5,6', 'buscas.cron.extract_5_Django', CRON_LOG),
+    # ('8 0 * * 2,3,4,5,6', 'buscas.cron.extract_15_Django', CRON_LOG),
+    #('* * * * *', 'buscas.cron.ResetValues', CRON_LOG),
 
 ]
 #redireciona os erros para stdoutc

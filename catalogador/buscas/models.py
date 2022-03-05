@@ -1,9 +1,9 @@
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from django.db import models
 from datetime import datetime
-from buscas.extrator_iq.extract import ExtracToDjango
 from django.contrib import admin
 from django.utils.html import format_html
+
 
 
 

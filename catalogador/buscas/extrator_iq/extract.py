@@ -130,7 +130,8 @@ class ExtratorPostGres:
 class ExtratorMysql:
     TIMES = [1, 5, 15]
     VELAS = {1:900, 5:300, 15:100}
-    VELAS_ALL = {1:1400*12, 5:300*12, 15:100*12}
+    VELAS_ALL = {1:1400, 5:300, 15:100}
+    DAYS_EXTRACT = 12
 
 
     def __init__(self, login, senha) -> None:
@@ -195,7 +196,7 @@ class ExtratorMysql:
 
 
     def getVelasMinuteAll(self, par, time):
-        values = self.iq.getManyVelas(par, self.VELAS_ALL[time], time)
+        values = self.iq.getManyVelas(par, self.VELAS_ALL[time]*self.DAYS_EXTRACT, time)
         return values
 
     def getVelasFiveMinute(self, par, time):
@@ -261,7 +262,7 @@ class ExtratorMysql:
 class ExtracToDjango:
     TIMES = [1, 5, 15]
     VELAS = {1:900, 5:300, 15:100}
-    VELAS_ALL = {1:1400*12, 5:300*12, 15:100*12}
+    DAYS_EXTRACT = 12
 
 
     def __init__(self, login, senha) -> None:
@@ -301,7 +302,7 @@ class ExtracToDjango:
 
 
     def getVelasMinuteAll(self, par, time):
-        values = self.iq.getManyVelas(par, self.VELAS_ALL[time], time)
+        values = self.iq.getManyVelas(par, self.VELAS[time] * self.DAYS_EXTRACT, time)
         return values
 
     def getVelasFiveMinute(self, par, time):
