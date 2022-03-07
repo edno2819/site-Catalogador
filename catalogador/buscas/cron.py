@@ -1,17 +1,17 @@
 from buscas.extrator_iq.extract import ExtratorMysql, AnaltyChances, ExtracToDjango
-from buscas.models import Paridade, Configuraçõe, Chance, Vela, analyVelas
+from buscas.models import Paridade, Configuração, Chance, Vela, analyVelas
 from datetime import datetime, timedelta
 import time
 
 def init():
-    config = Configuraçõe.objects.filter()[0]
+    config = Configuração.objects.filter()[0]
     ex = ExtratorMysql(config.login, config.senha)
     return ex
 
 #========================================== Darly ====================================================================================
 def deleteVelasBefore():
     print('\n - Iniciando exclusão de velas antigas')
-    days_exclude = Configuraçõe.objects.filter()[0].dias_salvos
+    days_exclude = Configuração.objects.filter()[0].dias_salvos
     days_exclude = days_exclude + (2*(days_exclude//7)) + 2
     day_delete = datetime.today() - timedelta(days=days_exclude)
     velas_before = Vela.objects.filter(data__lte=day_delete)
@@ -19,7 +19,7 @@ def deleteVelasBefore():
     print('     Exclusão de velas concluida com sucesso!\n')
 
 def extractStand(tipo, timeframe):
-    config = Configuraçõe.objects.filter()[0]
+    config = Configuração.objects.filter()[0]
     ex = ExtracToDjango(config.login, config.senha)
     print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} - Tipo {tipo}')
 
@@ -57,7 +57,7 @@ def all_dairly_task():
 
 def extractAllDjango():
     print('Iniciando extração de velas')
-    config = Configuraçõe.objects.filter()[0]
+    config = Configuração.objects.filter()[0]
     ex = ExtracToDjango(config.login, config.senha)
     ex.DAYS_EXTRACT = config.dias_salvos
     Vela.objects.all().delete()
@@ -81,7 +81,7 @@ def sumDirectionsDjango():
     print('Iniciando criação de Chances por Velas')
     time_frames = ['5', '15']
     horas = [n for n in range(0,24)]
-    config = Configuraçõe.objects.filter()[0]
+    config = Configuração.objects.filter()[0]
     qtd_days = config.dias_salvos
     Chance.objects.all().delete()
 

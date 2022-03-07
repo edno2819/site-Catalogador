@@ -1,5 +1,5 @@
 from django.contrib import admin
-from buscas.models import Paridade, Configuraçõe, Chance, Vela
+from buscas.models import Paridade, Configuração, Chance, Vela
 
 
 class VelasAdmin(admin.ModelAdmin):
@@ -38,6 +38,6 @@ class ConfigsAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Paridade)
-admin.site.register(Configuraçõe, ConfigsAdmin)
+admin.site.register(Configuração, ConfigsAdmin)
 admin.site.register(Chance, ChancesAdmin)
 admin.site.register(Vela, VelasAdmin)

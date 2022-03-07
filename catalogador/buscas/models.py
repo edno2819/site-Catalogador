@@ -3,7 +3,6 @@ from django.db import models
 from datetime import datetime
 from django.contrib import admin
 from django.utils.html import format_html
-from django.urls import reverse_lazy
 
 
 
@@ -19,7 +18,7 @@ class Paridade(models.Model):
         return self.name
 
 
-class Configuraçõe(models.Model):
+class Configuração(models.Model):
     login = models.CharField(max_length=32, null=False, blank=False)
     senha = models.CharField(max_length=32, null=False, blank=False)
     dias_salvos = models.PositiveIntegerField(default=10, null=False, blank=False,
@@ -27,6 +26,9 @@ class Configuraçõe(models.Model):
                 MaxValueValidator(50),
                 MinValueValidator(1)
             ])
+    
+    class Meta:
+        verbose_name_plural = 'configurações'
 
     def __str__(self):
         return f'Login: {self.login}  | Dias Salvos: {self.dias_salvos}'

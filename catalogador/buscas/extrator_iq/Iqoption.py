@@ -2,6 +2,7 @@ from iqoptionapi.stable_api import IQ_Option
 from datetime import datetime
 from dateutil import tz
 import time
+# -U git+https://github.com/iqoptionapi/iqoptionapi.git
 
 
 def timestamp_converter(x): 
