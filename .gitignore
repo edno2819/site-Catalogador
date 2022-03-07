@@ -1,3 +1,5 @@
 venv
 catalogador/logs
 catalogador/db.sqlit3
+db.sqlit3
+catalogador/buscas/extrator_iq/iqoptionapi

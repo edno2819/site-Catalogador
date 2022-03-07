@@ -38,11 +38,20 @@ def busca(request):
     context = {'pares':Paridade.objects.filter(), 'resultado_qtd':len(datas), 'chances':chances}
 
     if request.method == "POST":
-        par_ = request.POST.get('par', '0')
-        time = int(request.POST.get('time', '0'))
+        par = request.POST.get('par', False)
+        time = int(request.POST.get('time', False))
+        hora = request.POST.get('hora', False)
+        hora = int(hora) if hora!='' else False
 
-        datas = Chance.objects.filter(par=par_) if par_!='0' else Chance.objects.all() 
-        datas = datas.filter(timeframe=time) if time!=0 else datas
+        minuto = request.POST.get('minuto', False)
+        minuto = int(minuto) if minuto!='' else False
+
+
+
+        datas = Chance.objects.filter(par=par) if par else Chance.objects.all() 
+        datas = datas.filter(hora=hora) if hora else datas
+        datas = datas.filter(minuto=minuto) if minuto else datas
+        datas = datas.filter(timeframe=time) if time else datas
         datas = datas.order_by('-porcent','-par')
 
         chances = format_chance(datas)

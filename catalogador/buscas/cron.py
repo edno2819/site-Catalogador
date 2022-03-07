@@ -1,6 +1,6 @@
 from buscas.extrator_iq.extract import ExtratorMysql, AnaltyChances, ExtracToDjango
 from buscas.models import Paridade, Configuraçõe, Chance, Vela, analyVelas
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 
 def init():
@@ -8,12 +8,15 @@ def init():
     ex = ExtratorMysql(config.login, config.senha)
     return ex
 
-#========================================== Delete ====================================================================================
+#========================================== Darly ====================================================================================
 def deleteVelasBefore():
-    '''
-    day_delete = today - Configuraçõe.objects.filter()[0].dias_salvos
-    Velas.objects.delete(date<=day_delete) Vela.objects.all().delete()
-    '''
+    print('\n - Iniciando exclusão de velas antigas')
+    days_exclude = Configuraçõe.objects.filter()[0].dias_salvos
+    days_exclude = days_exclude + (2*(days_exclude//7)) + 2
+    day_delete = datetime.today() - timedelta(days=days_exclude)
+    velas_before = Vela.objects.filter(data__lte=day_delete)
+    velas_before.delete()
+    print('     Exclusão de velas concluida com sucesso!\n')
 
 def extractStand(tipo, timeframe):
     config = Configuraçõe.objects.filter()[0]
@@ -28,6 +31,7 @@ def extractStand(tipo, timeframe):
     del ex
 
 def extract_1_1_Django():
+    print('Iniciando extração vela 1 1')
     extractStand('1 1', 1)
 
 def extract_1_2_Django():
@@ -39,15 +43,26 @@ def extract_5_Django():
 def extract_15_Django():
     extractStand('15', 15)
 
+
+def all_dairly_task():
+    print('Iniciando tarefaz diarias')
+    deleteVelasBefore()
+    extract_1_2_Django()
+    extract_5_Django()
+    extract_15_Django()
+    print('     Finalizando tarefaz diarias')
+
+
 #========================================== Creat chances ======================================================================================
 
 def extractAllDjango():
+    print('Iniciando extração de velas')
     config = Configuraçõe.objects.filter()[0]
     ex = ExtracToDjango(config.login, config.senha)
-    ex.DAYS_EXTRACT = config.days# -----------------------------
+    ex.DAYS_EXTRACT = config.dias_salvos
     Vela.objects.all().delete()
 
-    tipos = ['1 all', '5 all', '15 all']
+    tipos = ['5 all', '15 all']
     tipos_dic = {'1 all':1, '5 all':5, '15 all':15}
 
     for tipo in tipos:
@@ -59,14 +74,15 @@ def extractAllDjango():
             for data in datas:
                 Vela.objects.create(par=par, data=data['date'], timeframe=tipos_dic[tipo], direc=data['direc'], hora=data['hora'], minuto=data['minuto'])
                 
-    print('Finalizado')
+    print('     Finalizado Extração completa de velas')
 
 
 def sumDirectionsDjango():
-    time_frames = ['1', '5', '15']
+    print('Iniciando criação de Chances por Velas')
+    time_frames = ['5', '15']
     horas = [n for n in range(0,24)]
     config = Configuraçõe.objects.filter()[0]
-    qtd_days = config.days# ajeitar--------------
+    qtd_days = config.dias_salvos
     Chance.objects.all().delete()
 
     for timeframe in time_frames:
@@ -81,10 +97,11 @@ def sumDirectionsDjango():
                     if direc:
                         Chance.objects.create(par=par, timeframe=timeframe, hora=hora, minuto=minuto, call=call, sell=sell, porcent=taxa, direc=direc)
 
-    print('Finalização de creação de Chances por Velas')
+    print('     Finalização de criação de Chances')
 
 
 def ResetValues():
+    print('Iniciando Reset de Velas')
     extractAllDjango()
     sumDirectionsDjango()
 

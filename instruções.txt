@@ -85,3 +85,10 @@ Run Server:             python manage.py runserver
     q = q.exclude(body_text__icontains="food")
 
     Entry.objects.get(pk=1)
+
+======================= Agendamento de Tarefaz DJango============================
+Na inicialização do app:
+    https://medium.com/@kevin.michael.horan/scheduling-tasks-in-django-with-the-advanced-python-scheduler-663f17e868e6
+    https://apscheduler.readthedocs.io/en/3.x/modules/triggers/cron.html
+Adicionando tarefaz no cron do Linux:
+Usando 

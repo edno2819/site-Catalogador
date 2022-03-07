@@ -3,6 +3,8 @@ from django.db import models
 from datetime import datetime
 from django.contrib import admin
 from django.utils.html import format_html
+from django.urls import reverse_lazy
+
 
 
 
@@ -75,10 +77,14 @@ class Vela(models.Model):
     def Direção(self):
         color = 'a71c1c' if self.direc=='SELL' else '319c35'
         return format_html(
-            '<span style="color: #{};">{}</span>',
+            '''<button 
+            style="background-color: #{}; border:#{} ;color: rgb(255, 255, 255); border-radius: 5px;"
+            href = 'http://127.0.0.1:8000/admin/buscas/chance/
+            >{}</button>''',
+            color,
             color,
             self.direc,
-        )
+        )  
 
     def __str__(self):
         return f'{self.data}-{self.par}-{self.timeframe}-{self.direc}'
@@ -101,42 +107,3 @@ def analyVelas(par, timeframe, hora, minuto, limit=10):
     direc, maxi = ('CALL', result['CALL']) if result['CALL']>result['SELL']  else ('SELL', result['SELL'])  
     taxa = int((100*maxi)/(result['CALL']+result['SELL']))
     return direc, result['CALL'], result['SELL'], taxa
-
-
-# def sumDirectionsVelas():
-#     time_frames = ['5','15']
-#     horas = [n for n in range(0,24)]
-#     #Chance.objects.all().delete()
-
-#     for timeframe in time_frames:
-#         print(f'{datetime.now().strftime("%H-%M-%S %d/%m/%Y")} - Tipo {timeframe}')
-#         for hora in horas:
-#             print(f'{timeframe} - Hora {hora}')
-#             minutos = [n for n in range(0 ,60, int(timeframe))]
-#             for minuto in minutos:
-#                 for par in Paridade.objects.filter():
-#                     par = par.name
-#                     direc, call, sell, taxa = analyVelas(par, timeframe, hora, minuto, 10)
-#                     if direc:
-#                         Chance.objects.create(par=par, timeframe=timeframe, hora=hora, minuto=minuto, call=call, sell=sell, porcent=taxa, direc=direc)
-
-#     print('Finalização de creação de Chances por Velas')
-
-
-# #extractAllDjango()
-# sumDirectionsVelas()
-
-# from datetime import timedelta
-
-# datas = Chance.objects.filter(par='EURUSD', timeframe=5, hora=13)
-# chances = []
-# for chance in datas:
-#     horario = (timedelta(hours=chance.hora, minutes=chance.minuto) - timedelta(minutes=chance.timeframe)).seconds
-#     before_hora = horario//3600
-#     before_minuto = int((horario%3600)/60)
-#     vela_anterior = Chance.objects.filter(par=chance.par, timeframe=chance.timeframe, hora=before_hora, minuto=before_minuto)
-#     new = {'horario':chance.formatData(), 'par':chance.par, 'porcent':chance.porcent, 'timeframe':chance.timeframe, 'direc':chance.direc}
-#     if len(vela_anterior)==1:
-#         vela_anterior = vela_anterior[0]
-#         new.update({'horario_before':vela_anterior.formatData(), 'porcent_before':vela_anterior.porcent, 'direc_before':vela_anterior.direc})
-#     chances.append(new)
