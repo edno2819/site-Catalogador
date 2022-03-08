@@ -30,7 +30,7 @@
 
 div.search {
     /* background-image: url("/static/assets/img/back.png"); */
-    background-color: rgb(52, 58, 64); ;
+    background-color: rgb(52, 58, 64);
     width: 100vw;
     height: 100%;
     display: flex;
@@ -87,6 +87,18 @@ h1.search{
     border: 1px solid #a71c1c;
 
 }
+@media (max-width: 800px) {
+  .botoao {
+    width: 30vw;
+  }
+}
+@media (min-width: 801px) and (max-width: 992px) {
+  .botoao {
+    width: 20%;
+  }
+}
+
+
 
 ::-webkit-scrollbar {
     width: 10px;

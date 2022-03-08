@@ -9,8 +9,7 @@ def home(request):
     return render(request, 'index.html', context)
 
 def layout(request):
-    return render(request, 'layout-static.html') 
-
+    return render(request, 'teste.html') 
 
 
 

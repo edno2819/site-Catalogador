@@ -3,22 +3,23 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-+2_6c0*5fe^_bqjs5i)546-ei)5*(vqyce(8qiay6$se!h!-%+'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
+DEBUG = True
 ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['rox-catalogador.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -30,7 +31,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_crontab',
     'buscas.apps.BuscasConfig' 
 ]
 
@@ -42,6 +42,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'catalogador.urls'
@@ -120,18 +122,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Mês (1 - 12)
 # Dia da semana (0 - 6)
 #TAREFAZ EXECUTADAS DE FORMA PARALELAS
-CRON_LOG = '>> /home/edno/Desktop/Catalogador/site-Catalogador/catalogador/logs/cron_log.log'
-CRONJOBS = [
-    #('4 16 * * 2,3,4,5,6', 'buscas.cron.deleteVelasBefore', CRON_LOG),
-    # ('* 13 * * 1,2,3,4,5', 'buscas.cron.extract_1_1_Django', CRON_LOG),
-    # ('1 0 * * 2,3,4,5,6', 'buscas.cron.extract_1_2_Django', CRON_LOG),
-    # ('6 0 * * 2,3,4,5,6', 'buscas.cron.extract_5_Django', CRON_LOG),
-    # ('8 0 * * 2,3,4,5,6', 'buscas.cron.extract_15_Django', CRON_LOG),
-    #('* * * * *', 'buscas.cron.ResetValues', CRON_LOG),
+# CRON_LOG = '>> /home/edno/Desktop/Catalogador/site-Catalogador/catalogador/logs/cron_log.log'
+# CRONJOBS = [
+#     #('4 16 * * 2,3,4,5,6', 'buscas.cron.deleteVelasBefore', CRON_LOG),
+#     # ('* 13 * * 1,2,3,4,5', 'buscas.cron.extract_1_1_Django', CRON_LOG),
+#     # ('1 0 * * 2,3,4,5,6', 'buscas.cron.extract_1_2_Django', CRON_LOG),
+#     # ('6 0 * * 2,3,4,5,6', 'buscas.cron.extract_5_Django', CRON_LOG),
+#     # ('8 0 * * 2,3,4,5,6', 'buscas.cron.extract_15_Django', CRON_LOG),
+#     #('* * * * *', 'buscas.cron.ResetValues', CRON_LOG),
+# ]
 
-]
 #redireciona os erros para stdoutc
-CRONTAB_COMMAND_SUFFIX = '2>&1'
+# CRONTAB_COMMAND_SUFFIX = '2>&1'
 # python3 manage.py crontab add
 # python3 manage.py crontab show
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240

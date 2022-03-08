@@ -261,7 +261,7 @@ class ExtratorMysql:
 
 class ExtracToDjango:
     TIMES = [1, 5, 15]
-    VELAS = {1:900, 5:300, 15:100}
+    VELAS = {1:1460, 5:300, 15:100}
     DAYS_EXTRACT = 12
 
 
