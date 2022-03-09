@@ -22,7 +22,7 @@ input[type=number] {
     /* ===== Colors ===== */
     --body-color: rgb(52, 58, 64);
     --sidebar-color: #242526;
-    --primary-color: #3a3b3c;
+    --primary-color: #d45421;
     --primary-color-light: #3a3b3c;
     --toggle-color: #fff;
     --text-color: #ccc;
@@ -42,15 +42,6 @@ body{
 ::selection{
     background-color: var(--primary-color);
     color: #fff;
-}
-
-body.dark{
-    --body-color: #18191a;
-    --sidebar-color: #242526;
-    --primary-color: #3a3b3c;
-    --primary-color-light: #3a3b3c;
-    --toggle-color: #fff;
-    --text-color: #ccc;
 }
 
 /* ===== Sidebar ===== */
@@ -121,6 +112,8 @@ body.dark{
 .sidebar header .logo-text{
     display: flex;
     flex-direction: column;
+    color: var(--primary-color); 
+    margin-left: 5px;
 }
 header .image-text .name {
     margin-top: 2px;
@@ -141,7 +134,8 @@ header .image-text .profession{
 }
 
 .sidebar header .image img{
-    width: 40px;
+    width: 56px;
+    height: 60px;
     border-radius: 6px;
 }
 
